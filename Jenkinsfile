@@ -10,7 +10,7 @@ pipeline {
         stage("Build") {
             steps {
                 echo("Start Build")
-                bat "mvnw.cmd clean compile test-compile"
+                sh("./mvnw clean compile test-compile")
                 echo("Finish Build")
             }
         }
@@ -18,7 +18,7 @@ pipeline {
         stage("Test") {
             steps {
                 echo("Start test")
-                bat "mvnw.cmd test"
+                sh ("./mvnw test")
                 echo("Finish test")
             }
         }
