@@ -7,6 +7,11 @@ pipeline {
         WEB = "https://www.unismuh.ac.id"
     }
 
+    options {
+        disableConcurrentBuilds()
+        timeout(time: 10, unit: 'MINUTES')
+    }
+
     stages {
 
            stage("Prepare") {
