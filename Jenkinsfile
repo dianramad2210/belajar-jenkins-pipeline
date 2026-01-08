@@ -27,43 +27,44 @@ pipeline {
 
     stages {
         stage("OS Setup") {
-            matrix {
-                axes {
-                    axis {
-                        name "OS"
-                        values "Linux", "Winndows", "Mac"
-                    }
-                    axis {
-                        name "ARC"
-                        values "32", "64"
-                    }
-                }
-                excludes {
-                    exclude {
-                        axis {
-                            name "OS"
-                            values "mac"
-                        }
-                        axis {
-                            name "ARC"
-                            values "32"
-                        }
-                    }
-                }
-                 stages {
-                stage("OS Setup") {
-                    agent {
-                        node {
-                            label "Linux && java17"
-                        }
-                    }
-                    steps {
-                        echo("Setup ${OS} ${ARC}")
-                    }
-                }
+    matrix {
+        axes {
+            axis {
+                name "OS"
+                values "Linux", "Windows", "Mac"
             }
+            axis {
+                name "ARC"
+                values "32", "64"
             }
         }
+        excludes {
+            exclude {
+                axis {
+                    name "OS"
+                    values "Mac"
+                }
+                axis {
+                    name "ARC"
+                    values "32"
+                }
+            }
+        }
+        agent {
+            node {
+                label "Linux && java17"
+            }
+        }
+        stages {
+            stage("Setup") {
+                steps {
+                    echo "Setup ${OS} ${ARC}"
+                }
+            }
+        }
+    }
+}
+
 
         stage("Preparation") {
             parallel {
