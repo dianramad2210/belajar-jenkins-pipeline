@@ -16,6 +16,10 @@ pipeline {
         
     }
 
+    triggers {
+        cron("*/5 * * * *")
+    }
+
     options {
         disableConcurrentBuilds()
         timeout(time: 10, unit: 'MINUTES')
