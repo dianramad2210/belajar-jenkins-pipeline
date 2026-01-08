@@ -16,9 +16,9 @@ pipeline {
         
     }
 
-    triggers {
-        cron("*/5 * * * *")
-    }
+    // triggers {
+    //     cron("*/5 * * * *")
+    // }
 
     options {
         disableConcurrentBuilds()
@@ -110,6 +110,11 @@ pipeline {
         }
 
         stage("Deploy") {
+            input {
+                message "Can we deploy?"
+                ok "Yes, of course"
+                submitter "dianramad_2210, james"
+            }
             agent {
                 node {
                     label "Linux && java17"
