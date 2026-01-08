@@ -23,19 +23,20 @@ pipeline {
 
     stages {
 
-        stage("Parameter")
-        agent {
-                node {
-                    label "Linux && java17"
-               }
+        stage("Parameter") {
+            agent {
+               node {
+                label "Linux && java17"
+                }
             }
-            steps {
-                echo "Hello ${params.NAME}"
-                echo "You description ${params.DESCRIPTION}"
-                echo "Your social media is ${params.SOCIAL_MEDIA}"
-                echo "Need to deploy : ${params.DEPLOY} to deploy!"
-                echo "Your secret is ${params.SECRET}"
+        steps {
+            echo "Hello ${params.NAME}"
+            echo "You description ${params.DESCRIPTION}"
+            echo "Your social media is ${params.SOCIAL_MEDIA}"
+            echo "Need to deploy : ${params.DEPLOY} to deploy!"
+            echo "Your secret is ${params.SECRET}"
             }
+        }
 
            stage("Prepare") {
                 environment {
